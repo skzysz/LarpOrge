@@ -9,9 +9,9 @@ license="LGPL v2.1"
     version="${global.forgeVersion}"
     updateJSONURL="https://files.minecraftforge.net/net/minecraftforge/forge/promotions_slim.json"
     displayURL="https://minecraftforge.net/"
-    displayName="Forge"
+    displayName="LaprForge"
     credits="Anyone who has contributed on Github and supports our development"
     authors="LexManos,cpw"
     description='''
-    Forge, a broad compatibility API.
+    LaprForge, a Minecraft modding platform derived from Minecraft Forge.
     '''

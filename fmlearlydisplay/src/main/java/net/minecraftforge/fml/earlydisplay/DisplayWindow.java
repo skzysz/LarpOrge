@@ -148,7 +148,7 @@ public class DisplayWindow implements ImmediateWindowProvider {
         }
         this.maximized = parsed.has(maximizedopt) || FMLConfig.getBoolConfigValue(FMLConfig.ConfigValue.EARLY_WINDOW_MAXIMIZED);
 
-        StartupNotificationManager.modLoaderConsumer().ifPresent(c->c.accept("Forge loading " + forgeVersion));
+        StartupNotificationManager.modLoaderConsumer().ifPresent(c->c.accept("LaprForge loading " + forgeVersion));
         performanceInfo = new PerformanceInfo();
         return start(mcVersion, forgeVersion);
     }
@@ -310,12 +310,12 @@ public class DisplayWindow implements ImmediateWindowProvider {
         LOGGER.error("ERROR DISPLAY\n"+msgBuilder);
         // we show the display on a new dedicated thread
         Executors.newSingleThreadExecutor().submit(()-> {
-            var res = TinyFileDialogs.tinyfd_messageBox("Minecraft: Forge", msgBuilder.toString(), "yesno", "error", false);
+            var res = TinyFileDialogs.tinyfd_messageBox("Minecraft: LaprForge", msgBuilder.toString(), "yesno", "error", false);
             if (res) {
                 try {
                     Desktop.getDesktop().browse(URI.create(ERROR_URL));
                 } catch (IOException ioe) {
-                    TinyFileDialogs.tinyfd_messageBox("Minecraft: Forge", "Sadly, we couldn't open your browser.\nVisit " + ERROR_URL, "ok", "error", false);
+                    TinyFileDialogs.tinyfd_messageBox("Minecraft: LaprForge", "Sadly, we couldn't open your browser.\nVisit " + ERROR_URL, "ok", "error", false);
                 }
             }
             System.exit(1);
@@ -356,7 +356,7 @@ public class DisplayWindow implements ImmediateWindowProvider {
         glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
         glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
 
-        String vanillaWindowTitle = "Minecraft* ";
+        String vanillaWindowTitle = "Minecraft* LaprForge ";
         if (mcVersion != null) vanillaWindowTitle += mcVersion;
 
         // this emulates what we would get without early progress window
