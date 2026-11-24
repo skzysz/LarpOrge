@@ -43,5 +43,6 @@ build
 
 **/eclipse/
 **/runs/
+/projects/**/run/
 
 **/out/

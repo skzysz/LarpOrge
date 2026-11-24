@@ -1,6 +1,6 @@
 modLoader="javafml"
 loaderVersion="[3,]"
-issueTrackerURL="https://github.com/neoforged/NeoForge/issues"
+issueTrackerURL="https://github.com/skzysz/LarpOrge/issues"
 logoFile="neoforged_logo.png"
 license="LGPL v2.1"
 
@@ -9,11 +9,11 @@ license="LGPL v2.1"
     # We use the global NeoForge version
     version="${global.neoForgeVersion}"
     #updateJSONURL="https://maven.neoforged.net/releases/net/neoforged/forge/promotions_slim.json"
-    displayName="NeoForge"
+    displayName="LaprForge"
     credits="Anyone who has contributed on Github and supports our development"
     authors="The NeoForged Team"
     description='''
-    NeoForge, a NEW broad compatibility API.
+    LaprForge, a Minecraft 1.21.1 distribution based on NeoForge.
     '''
 
 [[mixins]]
