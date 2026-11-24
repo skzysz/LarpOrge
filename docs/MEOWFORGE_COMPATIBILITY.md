@@ -9,8 +9,36 @@ version checks remain intact so NeoForge mods can link to their native platform.
 Original copyright and license notices are retained.
 
 The previous Forge foundation remains on branch `laprforge-1.21.1`.
-Forge compatibility is not implemented by this change. Neither arbitrary
+Forge runtime compatibility is not implemented yet. The first implemented stage
+is a read-only preflight and an API inventory, described below. Neither arbitrary
 NeoForge modpacks nor mixed Forge/NeoForge modpacks have been verified yet.
+
+## Forge bridge: implemented preflight
+
+`scripts/forge_compat.py` reads Forge/NeoForge TOML metadata, declared Minecraft
+version ranges and Forge class references without executing or modifying mods.
+Native NeoForge metadata takes precedence for dual-platform JARs. Unknown version
+syntax is recorded as unverified, never interpreted as proof of compatibility.
+The launcher runs this check before startup. Forge JARs currently stop with
+`bridge_required`; wrong Minecraft versions stop with `minecraft_mismatch`.
+This prevents the NeoForge loader silently skipping an unsupported Forge mod.
+
+Run the unit tests with `python -m unittest discover -s scripts -p test_forge_compat.py -v`.
+Run `python scripts/forge_compat.py MODS_DIRECTORY --strict --report .local/compatibility-report.json`
+to inspect a pack. A native candidate still requires actual startup and gameplay tests.
+
+`scripts/forge_api_catalog.py MOD.jar --report .local/api-plan.json` inventories
+candidate class mappings against local NeoForge build outputs and cached modules.
+Class existence does not establish method, field, inheritance or behavioral compatibility.
+
+The supplied Forge Xaero Minimap 26.6.0 targets Minecraft 1.21.1 and references
+54 Forge API classes. Initial inventory finds 14 without a direct candidate:
+configuration screen factories, texture stitching events, legacy tick events,
+display-test extensions, loading stages/context and Forge registry interfaces.
+The remaining candidate classes also need signature and behavior validation.
+Xaero has not been transformed or successfully loaded; no third-party JAR is
+committed or redistributed. The next runtime milestone is an FML discovery
+extension and tested adapters for those API families.
 
 ## Target behavior
 
@@ -48,3 +76,11 @@ SHA-256: `68e6f4201c5de97b77929a7215c9552495696ca6a3bf3ae4eacc34e135f6cc8b`
 
 The fixture is supplied locally by the repository owner and is not committed or
 redistributed. Its startup and inventory behavior remain unverified.
+
+## Native smoke test
+
+The client with the supplied cat window icon and Mouse Tweaks 2.26.1 was launched.
+A separate creative test world was created, the inventory opened, an item moved
+to the hotbar, and the world saved back to the title screen without a crash.
+This is a native NeoForge smoke test, not proof that Forge Xaero works or that
+all Mouse Tweaks-specific gestures are correct. The original user modpack was untouched.

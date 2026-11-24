@@ -52,7 +52,7 @@ def brand_class(data):
         index += 1
     result.extend(data[offset:]); return bytes(result)
 
-logo = (root / 'src/main/resources/meowforge_logo.png').read_bytes()
+logo = (root / 'src/main/resources/meowforge_icon.png').read_bytes()
 with ZipFile(source) as original, ZipFile(destination / f'earlydisplay-{branded}.jar', 'w', ZIP_DEFLATED) as output:
     for entry in original.infolist():
         data = original.read(entry.filename)
