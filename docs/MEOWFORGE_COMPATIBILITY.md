@@ -1,9 +1,9 @@
-# LaprForge 1.21.1
+# MeowForge 1.21.1
 
 ## Current implementation
 
 The runtime foundation is NeoForge's Minecraft 1.21.1 branch, upstream commit
-`89e887b367ab0c11cb58ce8500920efadc17b803`. The public game brand is LaprForge.
+`89e887b367ab0c11cb58ce8500920efadc17b803`. The public game brand is MeowForge.
 The `neoforge` mod ID, Java packages, module names, dependency coordinates and
 version checks remain intact so NeoForge mods can link to their native platform.
 Original copyright and license notices are retained.

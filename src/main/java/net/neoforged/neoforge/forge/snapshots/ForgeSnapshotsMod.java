@@ -9,8 +9,8 @@ import net.minecraft.CrashReport;
 import net.minecraft.client.Options;
 
 public class ForgeSnapshotsMod {
-    public static final String BRANDING_NAME = "LaprForge";
-    public static final String BRANDING_ID = "laprforge";
+    public static final String BRANDING_NAME = "MeowForge";
+    public static final String BRANDING_ID = "meowforge";
 
     public static void processOptions(Options.FieldAccess fieldAccess) {}
 

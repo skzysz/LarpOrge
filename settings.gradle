@@ -20,6 +20,7 @@ dependencyResolutionManagement {
     repositoriesMode = RepositoriesMode.FAIL_ON_PROJECT_REPOS
     rulesMode = RulesMode.FAIL_ON_PROJECT_RULES
     repositories {
+        maven { url = uri(".local/meowforge-maven") }
         mavenCentral()
     }
 }
@@ -49,3 +50,5 @@ project(":coremods").name = "neoforge-coremods"
 gradle.settingsEvaluated {
     gradle.extensions.add("repositoryBaseUrls", dependencyResolutionManagement.repositories.withType(MavenArtifactRepository).collect { it.url }.toArray(URI[]::new))
 }
+
+rootProject.name = "MeowForge"

@@ -1,3 +1,9 @@
+# MeowForge
+
+Minecraft 1.21.1 distribution based on NeoForge. Technical NeoForge API names remain unchanged for mod compatibility.
+
+Run `powershell -ExecutionPolicy Bypass -File scripts/launch-client.ps1` from this checkout. The script prepares the branded early-display artifact in `.local`, retains the original fox animation and then starts the client. Requires Python 3 and Java 21; local Java/Gradle installations under `.local` are detected automatically.
+
 ![NeoForged Logo](./assets/neoforged_logo.png)
 
 NeoForge

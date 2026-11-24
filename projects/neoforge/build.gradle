@@ -97,7 +97,7 @@ dependencies {
         exclude group: 'org.slf4j'
         exclude group: 'net.fabricmc'
     }
-    libraries ("net.neoforged.fancymodloader:earlydisplay:${project.fancy_mod_loader_version}") {
+    libraries ("net.neoforged.fancymodloader:earlydisplay:${project.fancy_mod_loader_version}-meowforge.1") {
         exclude group: 'org.lwjgl'
         exclude group: 'org.slf4j'
         exclude group: 'net.fabricmc'

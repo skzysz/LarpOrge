@@ -56,7 +56,6 @@ public class NeoForgeLoadingOverlay extends LoadingOverlay {
         this.reload = reloader;
         this.onFinish = errorConsumer;
         this.displayWindow = displayWindow;
-        displayWindow.addMojangTexture(mc.getTextureManager().getTexture(ResourceLocation.withDefaultNamespace("textures/gui/title/mojangstudios.png")).getId());
         this.progressMeter = StartupNotificationManager.prependProgressBar("Minecraft Progress", 1000);
     }
 
@@ -126,6 +125,18 @@ public class NeoForgeLoadingOverlay extends LoadingOverlay {
         bufferbuilder.addVertex(wleft, wtop, 0f).setUv(0, 1).setColor(1f, 1f, 1f, fade);
         GL30C.glTexParameterIi(GlConst.GL_TEXTURE_2D, GlConst.GL_TEXTURE_MIN_FILTER, GlConst.GL_NEAREST);
         GL30C.glTexParameterIi(GlConst.GL_TEXTURE_2D, GlConst.GL_TEXTURE_MAG_FILTER, GlConst.GL_NEAREST);
+        BufferUploader.drawWithShader(bufferbuilder.buildOrThrow());
+        // The distribution logo is independent of the early window's fox animation.
+        RenderSystem.setShaderTexture(0, ResourceLocation.fromNamespaceAndPath("neoforge", "textures/gui/meowforge_logo.png"));
+        float logoWidth = Math.min(fbWidth * 0.72f, 800f);
+        float logoHeight = logoWidth * 123f / 989f;
+        float logoLeft = (fbWidth - logoWidth) / 2f;
+        float logoBottom = fbHeight * 0.62f;
+        bufferbuilder = Tesselator.getInstance().begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX_COLOR);
+        bufferbuilder.addVertex(logoLeft, logoBottom, 0f).setUv(0, 1).setColor(1f, 1f, 1f, fade);
+        bufferbuilder.addVertex(logoLeft + logoWidth, logoBottom, 0f).setUv(1, 1).setColor(1f, 1f, 1f, fade);
+        bufferbuilder.addVertex(logoLeft + logoWidth, logoBottom + logoHeight, 0f).setUv(1, 0).setColor(1f, 1f, 1f, fade);
+        bufferbuilder.addVertex(logoLeft, logoBottom + logoHeight, 0f).setUv(0, 0).setColor(1f, 1f, 1f, fade);
         BufferUploader.drawWithShader(bufferbuilder.buildOrThrow());
         RenderSystem.defaultBlendFunc();
         RenderSystem.disableBlend();
